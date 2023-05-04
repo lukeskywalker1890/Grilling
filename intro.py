@@ -26,5 +26,3 @@ def begin():
   
   """)
   time.sleep(1)
-  playsound('audio/welcome.m4a')
-

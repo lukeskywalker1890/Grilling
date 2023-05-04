@@ -3,10 +3,15 @@ from steaks import *
 from linkedlist import LinkedList
 from playsound import playsound
 import speech_recognition as sr
+import pyttsx3
+from gtts import gTTS
+import os
 
 r = sr.Recognizer()
 # Creates the introduction figure.
 begin()
+
+
 time.sleep(1)
 # Makes the steak options into a linked list.
 def insert_steak_types():
@@ -35,7 +40,18 @@ response = ""
 
 while len(response) == 0:
     print("\nWhat cut of beef would you like to grill? ")
-    playsound('audio/cut_of_beef.m4a')
+    # need gTTS and mpg123
+# pip install gTTS
+# apt install mpg123
+
+
+
+    mytext1 = "What cut of beef would you like to grill?"
+    cut = "cut.mp3"
+
+    myobj = gTTS(mytext1, 'en')
+    myobj.save("cut.mp3")
+    os.system("mpg123" + cut)
     
     # Makes voice recgonition for the user to say the steak they want.
     with sr.Microphone() as source:
@@ -59,7 +75,12 @@ while len(response) == 0:
     if len(correct_answer) == 1:
         time.sleep(1)
         print("\nWould you like to use this cut?[yes/no] ")
-        playsound('audio/use_cut.m4a')
+        mytext2 = 'Would you like to use this cut? Say yes or no.'
+        language = 'en'
+
+        myobj = gTTS(text=mytext2, lang=language, slow=False)
+        myobj.save(use.mp3)
+        os.system("mpg321" + use.mp3)
         with sr.Microphone() as source:
          audio = r.listen(source)
          inh2 = r.recognize_google(audio)
@@ -87,8 +108,12 @@ while len(response) == 0:
           #Asks the user if the want to look up a different grill option.
           time.sleep(1)
           with sr.Microphone() as source:
-            print("\nDo you wish to look at another grill option? ")
-            playsound('audio/grill_option.m4a')
+            mytext3 = 'Do you wish to look at another grill option? Say yes or no.'
+            language = 'en'
+
+            tts = gTTS(text=mytext3, lang=language, slow=False)
+            tts.save("welcome.mp3")
+            os.system("mpg321 tru.mp3")
             audio = r.listen(source)
             inh3 = r.recognize_google(audio)
             inh3 = inh3.lower()
@@ -104,7 +129,12 @@ while len(response) == 0:
           time.sleep(1)
           with sr.Microphone() as source:
             print("\nDo you wish to look at another grill option? ")
-            playsound('audio/grill_option.m4a')
+            mytext4 = 'Do you wish to look at another grill option? Say yes or no.'
+            language = 'en'
+
+            myobj = gTTS(text=mytext4, lang=language, slow=False)
+            myobj.save("tr.mp3")
+            os.system("mpg321 tr.mp3")
             audio = r.listen(source)
             inh4 = r.recognize_google(audio)
             inh4 = inh4.lower()
@@ -114,3 +144,4 @@ while len(response) == 0:
             time.sleep(1)
           else:
             break
+  
