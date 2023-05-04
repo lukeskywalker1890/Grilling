@@ -111,6 +111,7 @@ while len(response) == 0:
           #Asks the user if the want to look up a different grill option.
           time.sleep(1)
           with sr.Microphone() as source:
+            print("\nDo you wish to look at another grill option? ")
             tts = gtts.gTTS("Do you wish to look at another grill option? Say yes or no.")
 
             # save the audio file
